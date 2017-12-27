@@ -1,0 +1,123 @@
+.serie-item{
+    padding: 60px;
+    border-top: 1px solid rgba(0, 0, 0, 0.100);
+    border-left: 1px solid rgba(0, 0, 0, 0.100);
+    border-right: 1px solid rgba(0, 0, 0, 0.100);
+}
+
+.shadow{
+    box-shadow: 0 1px 5px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12);
+}
+.circle {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    background: #2196f3;
+    border: 1px solid #2196f3;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 35px;
+    color: #fff;
+    font-weight: 700;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    
+}
+
+@media only screen and (max-width: 768px){
+    .circle{
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 39px;
+        margin-bottom: 40px;
+    }
+}
+
+@media only screen and (max-width: 425px){
+    .main-content{ position: relative;}
+    .circle{
+        position: absolute;
+        top: 18px;
+        right: 18px;
+    }
+}
+
+.light-bold{
+    font-weight: 800;
+    color: rgba(27, 26, 26, 0.35);
+}
+
+.serie-item h1,h2,h3,h4,h5,p,li{color: #575d66}
+
+.serie-item h2{
+    font-size: 1.8em; 
+    color: #575d66
+}
+
+.serie-item h3{
+    font-size: 1.2em; 
+}
+
+.serie-item h4{
+    font-size: 1.025em;
+}
+
+.serie-item .desc {
+    color: #575d66
+}
+
+
+
+
+@media only screen and (max-width: 425px){
+    .serie-item h2 {
+        font-size: 1.2em;
+    }
+    .serie-item p {
+        font-size:0.8em;
+    }
+
+    .serie-item{
+        padding-bottom: 60px;
+    }
+
+    .md-speed-dial{
+        position: absolute;
+        right: 0px;
+        bottom: 11px;
+    }
+
+    pre{
+        font-size: 0.8em;
+    }
+}
+
+
+
+.main-content img {
+    margin-top: 1.625rem !important;
+    margin-bottom: 1.625rem !important;
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 1px 5px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12);
+}
+
+.main-content hr{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.main-content code{
+    font-size: 0.9em;
+}
+
+.arrow-inverse{
+    transform: rotate(180deg);
+    position: relative;
+    top: -7px;
+}

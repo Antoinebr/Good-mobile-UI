@@ -1,0 +1,27 @@
+
+.header{
+
+    h1{ 
+        color: #2980b9; 
+        font-size: 42px;
+    }
+    p{
+        font-size: 39px;
+        font-weight: 600;
+    }
+
+    input{
+        border-radius: 4px !important;
+        border: 1px solid #DBDBDB !important;
+        width: 100%;
+        height: 70px;
+        padding-left: 10px;
+    }
+
+    @media only screen and (max-width: 375px){
+        	
+       p{font-size: 15px;}
+
+    }
+
+}

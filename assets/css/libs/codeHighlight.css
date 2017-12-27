@@ -1,0 +1,115 @@
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+/* line 7, ../../../sass/libs/codeHighlight.scss */
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: rgba(214, 214, 214, 0.22);
+}
+
+/* line 15, ../../../sass/libs/codeHighlight.scss */
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+/* line 21, ../../../sass/libs/codeHighlight.scss */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+/* line 28, ../../../sass/libs/codeHighlight.scss */
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+/* line 36, ../../../sass/libs/codeHighlight.scss */
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+/* line 41, ../../../sass/libs/codeHighlight.scss */
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+/* line 48, ../../../sass/libs/codeHighlight.scss */
+.hljs-subst {
+  font-weight: normal;
+}
+
+/* line 52, ../../../sass/libs/codeHighlight.scss */
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+/* line 58, ../../../sass/libs/codeHighlight.scss */
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+/* line 65, ../../../sass/libs/codeHighlight.scss */
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+/* line 70, ../../../sass/libs/codeHighlight.scss */
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+/* line 75, ../../../sass/libs/codeHighlight.scss */
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+/* line 80, ../../../sass/libs/codeHighlight.scss */
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+/* line 85, ../../../sass/libs/codeHighlight.scss */
+.hljs-deletion {
+  background: #fdd;
+}
+
+/* line 89, ../../../sass/libs/codeHighlight.scss */
+.hljs-addition {
+  background: #dfd;
+}
+
+/* line 93, ../../../sass/libs/codeHighlight.scss */
+.hljs-emphasis {
+  font-style: italic;
+}
+
+/* line 97, ../../../sass/libs/codeHighlight.scss */
+.hljs-strong {
+  font-weight: bold;
+}
