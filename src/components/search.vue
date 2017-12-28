@@ -44,7 +44,7 @@ export default {
       count(){
 
 
-        const goFetch = fetch(`http://localhost:5555/wp-json/elastic/search/?query=${this.searchQuery}~`)
+        const goFetch = fetch(`${API_URL}/wp-json/elastic/search/?query=${this.searchQuery}~`)
         .then( (response) => response.json() )
         .then( (res) => {
 
@@ -60,7 +60,7 @@ export default {
       },
       search(){
 
-        fetch(`http://localhost:5555/wp-json/elastic/search/?query=${this.searchQuery}~`)
+        fetch(`${API_URL}/wp-json/elastic/search/?query=${this.searchQuery}~`)
         .then( (response) => response.json() )
         .then( (res) => {
 

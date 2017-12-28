@@ -3,11 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
 import VueMasonry from 'vue-masonry-css'
 
-Vue.use(VueMasonry);
 
+// ENDPOINTS 
+window.API_URL = require('./endpoints.js');
+
+
+
+Vue.use(VueMasonry);
 
 Vue.config.productionTip = false
 

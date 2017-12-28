@@ -53,7 +53,7 @@ export default {
     methods: {
 
       displaySearchResults(results){ 
-
+        
         this.resetResults();
 
         this.results = results;
@@ -78,17 +78,6 @@ export default {
 
         this.screenshots = null 
       }
-
-
-
-    },
-    computed: {
-	
-      
-       
-    },
-
-    created (){ 
 
     },
 }

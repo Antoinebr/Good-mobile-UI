@@ -49,7 +49,7 @@ export default {
 
       getCategories(){
 
-        fetch('http://localhost:5555/wp-json/wp/v2/categories')
+        fetch(`${API_URL}/wp-json/wp/v2/categories`)
         .then( (response) => response.json() )
         .then( (res) => {
 
@@ -63,7 +63,7 @@ export default {
 
       getScreenshots(type = 'categories', id){
 
-        fetch(`http://localhost:5555/wp-json/wp/v2/media?${ type }=${ id }`)
+        fetch(`${API_URL}/wp-json/wp/v2/media?${ type }=${ id }`)
         .then( (response) => response.json() )
         .then( (res) => {
 
@@ -80,7 +80,7 @@ export default {
 
       getTags(){
 
-        fetch('http://localhost:5555/wp-json/wp/v2/tags')
+        fetch(`${API_URL}/wp-json/wp/v2/tags`)
         .then( (response) => response.json() )
         .then( (res) => {
 
