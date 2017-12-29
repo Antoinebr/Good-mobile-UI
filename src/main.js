@@ -4,18 +4,23 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueMasonry from 'vue-masonry-css'
+import VueVisible from 'vue-visible';
+
 
 
 // ENDPOINTS 
 window.API_URL = require('./endpoints.js');
 
 
-
+// Vue use 
 Vue.use(VueMasonry);
+
+Vue.use(VueVisible);
 
 Vue.config.productionTip = false
 
 
+// Vue proto
 Vue.prototype.$debounce = require('debounce');
 
 Vue.prototype.$scrollTo = require('vue-scrollto');

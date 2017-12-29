@@ -4,33 +4,33 @@
         <div class="row">
           <div class="col-sm-12 header u-mtl">
 
-            <h1>Mobile UI</h1>
+            <logo />
 
-            <p>Find best practices and inspiration for your project</p>
-            <p>300 mobile UI screenshots and counting</p>
+            <p class="u-txtCenter">Find best practices and inspiration for your project 300 mobile UI screenshots and counting</p>
 
-            <input @keyup.enter="search()" @keydown="count()" v-model="searchQuery" class="search u-shadowM u-mtm" placeholder="Type your query... e.g : checkout form">
+            <input @keyup.enter="search()" @keydown="count()" v-model="searchQuery" class="search u-shadowM img-center u-mtm" placeholder="Type your query... e.g : checkout form">
             
-            
-            <button @click.prevent="search()" class="button u-mts u-sm-mtm u-db-ma button--big">
-              <span v-if="total !== '' "> {{total}} </span>
-              <span v-if="total === '' "> search </span>
-               screenshot<span v-if="total > 0">s</span>  
-               <span v-if="total !== '' "> found </span>
+            <button @click.prevent="search()" class="button u-mts u-sm-mtm u-db-ma button--medium ">
+             
+              <span v-if="total === '' "> search screenshots</span>
+
+              <span v-else > {{total}} screenshots  <span v-if="total > 0">s</span> found </span>
+              
             </button>
+
+            <p class="u-txtCenter u-mtn info-tip"  v-visible=" total > 0 " > hit enter to perform the query </p>
             
-            <p class="u-txtCenter u-mtn info-tip" v-if=" total > 0 " > hit enter to perform the query </p>
-       
           </div>
-   
         </div>
      </div>
     </section>
 </template>
 
 <script>
+import logo from './logo' 
 
 export default {
+  components: {logo},
   name: 'search',
      data(){
         return{
@@ -79,16 +79,10 @@ export default {
 
 <style>
 
-.bg-img{
-  height: 73vh;
-  background-image: url('../assets/bg-smartphone.png');
-  background-repeat: no-repeat;
-  background-position-x: -4%;
-}
 
 .info-tip{
   font-size: 12px!important;
 }
-  
+
 </style>
 

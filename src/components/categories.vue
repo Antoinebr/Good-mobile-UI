@@ -1,5 +1,5 @@
 <template>
-    <section class="u-sm-mtm">
+    <section class="u-sm-mtm u-mtm">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 u-mts">
@@ -7,10 +7,11 @@
             <h2>Categories</h2>
 
             <div class="row">
-              <div v-for="categorie in categories" :key="categorie.id" class="col-sm-2 gallery-block u-mls u-mrs" > 
+              <div v-for="categorie in categories" :key="categorie.id"  > 
      
-                <!-- <router-link :to="{ name: 'Archive', params: { type: 'categories', id: categorie.id }}"> {{categorie.name}} </router-link> -->
-                <a @click.prevent="getScreenshots(categorie.id)">  {{categorie.name}} </a>
+                <a @click.prevent="getScreenshots(categorie.id)">  
+                  <div class="col-sm-2 gallery-block u-mls u-mrs" > {{categorie.name}}  </div>
+                </a>
 
               </div>
             </div>
@@ -20,9 +21,11 @@
             <h2>Tags</h2>
 
             <div class="row">
-              <div v-for="tag in tags" :key="tag.id" class="col-sm-2 gallery-block u-mls u-mrs" > 
-                
-                  <a @click.prevent="getScreenshots('tags',tag.id)">  {{tag.name}} </a>
+              <div v-for="tag in tags" :key="tag.id"> 
+
+                <a @click.prevent="getScreenshots('tags',tag.id)">  
+                  <div class="col-sm-2 gallery-block u-mls u-mrs" >  {{tag.name}}  </div>
+                </a>
 
               </div>
             </div>
@@ -70,8 +73,6 @@ export default {
           this.screenshots = res;
 
           this.$emit('onResult', this.screenshots  );
-
-          console.log(' 🤡 ', res );
 
          }).catch( (err) => console.log(res) );
 

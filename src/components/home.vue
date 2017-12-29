@@ -10,22 +10,29 @@
     <div class="container u-mtm" id="screenshots">
       <div class="row">
 
+        <div class="col-sm-12">
 
-        <masonry :cols="4" :gutter="30">
-          <div v-for="screenshot in screenshots" :key="screenshot.id">
-             <img :src="screenshot.media_details.sizes.full.source_url" class="img-responsive u-mts" alt="">
-          </div>
-        </masonry>
+            <masonry 
+             :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
+             :gutter="{default: '30px', 700: '15px'}"
+            >
+              <div v-for="screenshot in screenshots" :key="screenshot.id">
+                <img :src="screenshot.media_details.sizes.full.source_url" class="img-responsive u-mts" alt="">
+              </div>
+            </masonry>
 
-          
-        <masonry :cols="4" :gutter="30">
-          <article v-for="hit in results" :key="hit._id" > 
-              <img :src="hit._source.guid" class="img-responsive u-mts" >
-          </article>
-        </masonry>
+              
+            <masonry 
+              :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
+              :gutter="{default: '30px', 700: '15px'}"
+            >
+              <article v-for="hit in results" :key="hit._id" > 
+                  <img :src="hit._source.guid" class="img-responsive u-mts" >
+              </article>
+            </masonry>
 
-   
-         
+        </div>
+
       </div>  
     </div>
     
@@ -43,7 +50,7 @@ import search from './search.vue';
 
 export default {
   name: 'Home',
-  components : {categories,search},// name of my component
+  components : {categories,search},
      data(){
         return{
             results: null,

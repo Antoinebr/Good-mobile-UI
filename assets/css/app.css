@@ -2145,7 +2145,7 @@ img {
   line-height: 45px;
   text-align: center;
   font-size: 17px;
-  font-weight: 600;
+  font-weight: 200;
 }
 /* line 18, ../../sass/components/gallery/_block.scss */
 .gallery-block a {
@@ -2230,20 +2230,26 @@ img {
 }
 
 /* line 69, ../../sass/components/button/_button.scss */
+.button--medium {
+  padding: 0.9375em 2.5em;
+  font-size: 0.9375em;
+}
+
+/* line 74, ../../sass/components/button/_button.scss */
 .button--block {
   display: block;
   width: 100%;
 }
 
 @media (max-width: 30.0625em) {
-  /* line 74, ../../sass/components/button/_button.scss */
+  /* line 79, ../../sass/components/button/_button.scss */
   .button--blockMobile {
     display: block;
     width: 100%;
   }
 }
 
-/* line 81, ../../sass/components/button/_button.scss */
+/* line 86, ../../sass/components/button/_button.scss */
 .button--ghost {
   background-color: transparent;
   border: solid 1px #575e67;
@@ -2744,9 +2750,19 @@ img {
   .u-sm-prs {
     padding-right: 1.625rem !important;
   }
+
+  /* line 100, ../../sass/utils/_spacing.scss */
+  .u-sm-mrn {
+    margin-right: 0px !important;
+  }
+
+  /* line 101, ../../sass/utils/_spacing.scss */
+  .u-sm-mln {
+    margin-left: 0px !important;
+  }
 }
 @media only screen and (max-width: 425px) {
-  /* line 105, ../../sass/utils/_spacing.scss */
+  /* line 108, ../../sass/utils/_spacing.scss */
   .u-xs-ptn {
     padding-top: none;
   }
@@ -2754,12 +2770,12 @@ img {
 /*
 * HR
 */
-/* line 112, ../../sass/utils/_spacing.scss */
+/* line 115, ../../sass/utils/_spacing.scss */
 hr {
   border-color: rgba(224, 224, 224, 0.19);
 }
 
-/* line 114, ../../sass/utils/_spacing.scss */
+/* line 117, ../../sass/utils/_spacing.scss */
 .hr--50 {
   width: 50%;
 }
@@ -2767,7 +2783,7 @@ hr {
 /*
 * Display
 */
-/* line 122, ../../sass/utils/_spacing.scss */
+/* line 125, ../../sass/utils/_spacing.scss */
 .u-db-ma {
   display: block;
   margin: auto;
@@ -2833,22 +2849,38 @@ hr {
   color: #2980b9;
   font-size: 42px;
 }
-/* line 8, ../../sass/website/_hp.scss */
+/* line 9, ../../sass/website/_hp.scss */
 .header p {
-  font-size: 39px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 200;
 }
-/* line 13, ../../sass/website/_hp.scss */
+/* line 14, ../../sass/website/_hp.scss */
 .header input {
   border-radius: 4px !important;
   border: 1px solid #DBDBDB !important;
-  width: 100%;
-  height: 70px;
+  width: 75%;
+  height: 60px;
   padding-left: 10px;
 }
-@media only screen and (max-width: 375px) {
-  /* line 23, ../../sass/website/_hp.scss */
+@media only screen and (max-width: 425px) {
+  /* line 24, ../../sass/website/_hp.scss */
   .header p {
     font-size: 15px;
   }
+  /* line 26, ../../sass/website/_hp.scss */
+  .header input {
+    width: 100%;
+    font-size: 13px;
+  }
+}
+
+/* line 32, ../../sass/website/_hp.scss */
+h2 {
+  margin: 0 0 1.625rem 0;
+  font-family: Helvetica, sans-serif;
+  line-height: 1.25em;
+  font-weight: 200;
+  color: #4a4a4a;
+  text-rendering: optimizeLegibility;
+  font-size: 22px;
 }
