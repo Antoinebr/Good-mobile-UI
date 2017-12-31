@@ -12,9 +12,9 @@
             
             <button @click.prevent="search()" class="button u-mts u-sm-mtm u-db-ma button--medium ">
              
-              <span v-if="total === '' "> search screenshots</span>
+              <span v-if="total === '' && total <= 0"> search screenshots</span>
 
-              <span v-else > {{total}} screenshots  <span v-if="total > 0">s</span> found </span>
+              <span v-else > show the {{total}} screenshot<span v-if="total > 0">s</span> found </span>
               
             </button>
 
@@ -28,39 +28,40 @@
 
 <script>
 import logo from './logo' 
+import debounce from 'debounce';
+import trim from 'lodash/trim';
 
 export default {
   components: {logo},
   name: 'search',
      data(){
         return{
-            searchQuery : "",
+            searchQuery : '',
             hits : null,
             total : '',
         }
     },
     methods: {
-    
-      count(){
 
+      count : debounce( function() {
+        
+        let query = this.replaceSpaceToAnd(this.searchQuery);
 
-        const goFetch = fetch(`${API_URL}/wp-json/elastic/search/?query=${this.searchQuery}~`)
+        fetch(`${API_URL}/wp-json/elastic/search/?query=${query}~`)
         .then( (response) => response.json() )
         .then( (res) => {
 
           this.total = res.hits.total;
 
-         }).catch( (err) => console.log('Rejected ',err) ); 
+         }).catch( (err) => console.log('Rejected ',err) );
 
+      }, 500 ),
 
-        let count = this.$debounce(goFetch, 1000)
-
-        count();
-
-      },
       search(){
+        
+        let query = this.replaceSpaceToAnd(this.searchQuery);
 
-        fetch(`${API_URL}/wp-json/elastic/search/?query=${this.searchQuery}~`)
+        fetch(`${API_URL}/wp-json/elastic/search/?query=${query}~`)
         .then( (response) => response.json() )
         .then( (res) => {
 
@@ -70,15 +71,23 @@ export default {
 
          }).catch( (err) => reject(res) );
 
+      },
+      replaceSpaceToAnd(query){
+
+        query = trim(query);
+        query = query.replace('  ',' ');
+        query = query.replace(' ',' AND ');
+
+        return query;
 
       }
+  },
 
-    },
+
 }
 </script>
 
 <style>
-
 
 .info-tip{
   font-size: 12px!important;

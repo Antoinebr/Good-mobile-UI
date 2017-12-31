@@ -14,20 +14,20 @@
 
             <masonry 
              :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
-             :gutter="{default: '30px', 700: '15px'}"
-            >
+             :gutter="{default: '30px', 700: '15px'}">
+
               <div v-for="screenshot in screenshots" :key="screenshot.id">
-                <img :src="screenshot.media_details.sizes.full.source_url" class="img-responsive u-mts" alt="">
+                <img :src="screenshot.media_details.sizes.full.source_url" class="img-responsive border-s u-mts" alt="">
               </div>
             </masonry>
 
               
             <masonry 
               :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
-              :gutter="{default: '30px', 700: '15px'}"
-            >
+              :gutter="{default: '30px', 700: '15px'}">
+
               <article v-for="hit in results" :key="hit._id" > 
-                  <img :src="hit._source.guid" class="img-responsive u-mts" >
+                  <img :src="hit._source.guid" class="img-responsive u-mts border-s u-mts" >
               </article>
             </masonry>
 
@@ -92,6 +92,15 @@ export default {
 
 <style>
 
+.border-s{
+    border: 2px solid #0000002e;
+    box-shadow: 0px 1px 10px 2px rgba(0, 0, 0, 0.05) ;
+}
+
+.boder-s:hover{
+  border: none;
+  
+}
 
 
 </style>
