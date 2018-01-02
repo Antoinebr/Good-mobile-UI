@@ -8,11 +8,13 @@
 
             <p class="u-txtCenter">Find best practices and inspiration for your project 300 mobile UI screenshots and counting</p>
 
-            <input @keyup.enter="search()" @keydown="count()" v-model="searchQuery" class="search u-shadowM img-center u-mtm" placeholder="Type your query... e.g : checkout form">
+            <input @keyup.enter="search()" @keydown="count()" v-model="searchQuery" class="search u-shadowM img-center u-mtm" placeholder="Type your query... e.g : ecommerce basket">
             
             <button @click.prevent="search()" class="button u-mts u-sm-mtm u-db-ma button--medium ">
              
               <span v-if="total === '' && total <= 0"> search screenshots</span>
+
+              <span v-else-if="total === 0"> nothing found 😅 </span>
 
               <span v-else > show the {{total}} screenshot<span v-if="total > 0">s</span> found </span>
               

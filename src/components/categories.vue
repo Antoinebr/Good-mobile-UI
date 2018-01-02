@@ -56,7 +56,8 @@ export default {
         .then( (response) => response.json() )
         .then( (res) => {
 
-          this.categories = res;
+          
+          this.categories = res.filter( c =>  c.slug !== "uncategorized" && c.count > 1 );
 
 
          }).catch( (err) => console.log(res) );
