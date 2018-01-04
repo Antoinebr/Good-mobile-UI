@@ -53,7 +53,7 @@ export default {
         .then( (response) => response.json() )
         .then( (res) => {
 
-          this.total = res.hits.total;
+          this.total = res.length;
 
          }).catch( (err) => console.log('Rejected ',err) );
 
@@ -67,11 +67,11 @@ export default {
         .then( (response) => response.json() )
         .then( (res) => {
 
-          this.$emit('onResult', res.hits.hits );
+          this.$emit('onResult', res );
 
-          this.hits = res.hits.hits;
+          this.hits = res;
 
-         }).catch( (err) => reject(res) );
+         }).catch( (err) => console.log(res) );
 
       },
       replaceSpaceToAnd(query){

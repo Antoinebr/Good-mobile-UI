@@ -1,7 +1,7 @@
 <template>
   <div>
   
-    <search @onResult="displaySearchResults($event)"></search>
+    <search @onResult="displayResults($event)"></search>
 
    
     <categories @onResult="displayResults($event)" ></categories>
@@ -11,25 +11,21 @@
       <div class="row">
 
         <div class="col-sm-12">
+              
 
             <masonry 
              :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
              :gutter="{default: '30px', 700: '15px'}">
 
-              <div v-for="screenshot in screenshots" :key="screenshot.id">
-                <img :src="screenshot.media_details.sizes.full.source_url" class="img-responsive border-s u-mts" alt="">
-              </div>
-            </masonry>
-
-              
-            <masonry 
-              :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
-              :gutter="{default: '30px', 700: '15px'}">
-
-              <article v-for="hit in results" :key="hit._id" > 
-                  <img :src="hit._source.guid" class="img-responsive u-mts border-s u-mts" >
+              <article v-for="screenshot in screenshots" :key="screenshot.id">
+     
+                <screenshot :screenData="screenshot"></screenshot>
+ 
               </article>
+
             </masonry>
+
+
 
         </div>
 
@@ -37,8 +33,6 @@
     </div>
     
    
-
-
   </div>
 </template>
 
@@ -46,28 +40,18 @@
 
 import categories from './categories.vue';
 import search from './search.vue';
-
+import screenshot from './screenshot.vue';
 
 export default {
   name: 'Home',
-  components : {categories,search},
+  components : {categories,search, screenshot},
      data(){
         return{
             results: null,
-            screenshots: null
+            screenshots: null,
         }
     },
     methods: {
-
-      displaySearchResults(results){ 
-        
-        this.resetResults();
-
-        this.results = results;
-
-        this.$scrollTo.scrollTo( '#screenshots' , 400, VueScollToOptions);
-
-      },
 
       displayResults(results){ 
 
@@ -101,6 +85,5 @@ export default {
   border: none;
   
 }
-
 
 </style>

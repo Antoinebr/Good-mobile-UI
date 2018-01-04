@@ -55,10 +55,10 @@ export default {
         fetch(`${API_URL}/wp-json/wp/v2/categories`)
         .then( (response) => response.json() )
         .then( (res) => {
-
           
-          this.categories = res.filter( c =>  c.slug !== "uncategorized" && c.count > 1 );
+          window.categories = res;
 
+          this.categories = res.filter( c =>  c.slug !== "uncategorized" && c.count > 1 );
 
          }).catch( (err) => console.log(res) );
 
@@ -88,6 +88,7 @@ export default {
 
           this.tags = res;
 
+          window.tags = this.tags;
 
          }).catch( (err) => console.log(res) );
 
@@ -110,7 +111,3 @@ export default {
 }
 </script>
 
-<style>
-
-  
-</style>

@@ -2766,16 +2766,26 @@ img {
   .u-xs-ptn {
     padding-top: none;
   }
+
+  /* line 110, ../../sass/utils/_spacing.scss */
+  .u-xs-pbs {
+    padding-bottom: 1.625rem !important;
+  }
+
+  /* line 112, ../../sass/utils/_spacing.scss */
+  .u-xs-mtm {
+    margin-top: 3.25rem !important;
+  }
 }
 /*
 * HR
 */
-/* line 115, ../../sass/utils/_spacing.scss */
+/* line 119, ../../sass/utils/_spacing.scss */
 hr {
   border-color: rgba(224, 224, 224, 0.19);
 }
 
-/* line 117, ../../sass/utils/_spacing.scss */
+/* line 121, ../../sass/utils/_spacing.scss */
 .hr--50 {
   width: 50%;
 }
@@ -2783,7 +2793,7 @@ hr {
 /*
 * Display
 */
-/* line 125, ../../sass/utils/_spacing.scss */
+/* line 129, ../../sass/utils/_spacing.scss */
 .u-db-ma {
   display: block;
   margin: auto;
