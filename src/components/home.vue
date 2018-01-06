@@ -18,8 +18,8 @@
              :gutter="{default: '30px', 700: '15px'}">
 
               <article v-for="screenshot in screenshots" :key="screenshot.id">
-     
-                <screenshot :screenData="screenshot"></screenshot>
+                
+                <screenshot :screenData="screenshot" :options="false"></screenshot>
  
               </article>
 
@@ -74,16 +74,3 @@ export default {
 }
 </script>
 
-<style>
-
-.border-s{
-    border: 2px solid #0000002e;
-    box-shadow: 0px 1px 10px 2px rgba(0, 0, 0, 0.05) ;
-}
-
-.boder-s:hover{
-  border: none;
-  
-}
-
-</style>

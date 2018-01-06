@@ -7,9 +7,10 @@
 
        <div v-for="screenshot in screenshots"  :key="screenshot.id" class="col-sm-3"> 
 
-        <img :src="screenshot.media_details.sizes.full.source_url" class="img-responsive" alt="">
+        <screenshot :screenData="screenshot" :options="options"></screenshot>
 
       </div>
+
 
     </div> <!-- row -->
   
@@ -18,41 +19,33 @@
 </template>
 
 <script>
-
+import screenshot from './screenshot.vue'; 
+import { getScreenshotBySlug } from '../../api/api.js';
 export default {
   name: 'Archive',
-  //components : {categories,search},// name of my component
+  components : {screenshot},// name of my component
      data(){
         return{
-            screenshots : []
+            screenshots : [],
+            categories : null,
+            tags : null, 
+            options : {
+              directPopin : true, 
+              figureHidden : true
+            }
         }
     },
-    methods: {
-        
-    },
-    computed: {
-	
    
-       
-    },
 
     mounted (){ 
 
-      fetch(`http://localhost:5555/wp-json/wp/v2/media?${ this.$route.params.type }=${ this.$route.params.id }`)
-      .then( (response) => response.json() )
-      .then( (res) => {
-
-        this.screenshots = res;
-
-       }).catch( (err) => console.log(res) );
+      
+      getScreenshotBySlug(this.$route.params.slug)
+      .then( s => this.screenshots = s)
+      .catch ( e => console.log(e) );
 
 
     },
 }
 </script>
 
-<style>
-
-
-
-</style>

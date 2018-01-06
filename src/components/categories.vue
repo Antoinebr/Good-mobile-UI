@@ -9,7 +9,7 @@
             <div class="row">
               <div v-for="categorie in categories" :key="categorie.id"> 
      
-                <a @click.prevent="getScreenshots(categorie.id)" >  
+                <a @click.prevent="getScreenshot('categories',categorie.id)" >  
                   <div class="col-sm-2 gallery-block u-mls u-mrs" > {{categorie.name}}  </div>
                 </a>
 
@@ -23,7 +23,7 @@
             <div class="row">
               <div v-for="tag in tags" :key="tag.id"> 
 
-                <a @click.prevent="getScreenshots('tags',tag.id)">  
+                <a @click.prevent="getScreenshot('tags',tag.id)">  
                   <div class="col-sm-2 gallery-block u-mls u-mrs u-mts" >  {{tag.name}}  </div>
                 </a>
 
@@ -38,7 +38,7 @@
 
 <script>
 
-//import post from './post.vue';
+import { getCategories, getTags, getScreenshots } from '../../api/api.js';
 
 export default {
   name: 'categories',
@@ -48,64 +48,38 @@ export default {
             tags : []
         }
     },
-    methods: {
 
-      getCategories(){
+    methods:{
+      getScreenshot(type,id){
 
-        fetch(`${API_URL}/wp-json/wp/v2/categories`)
-        .then( (response) => response.json() )
-        .then( (res) => {
-          
-          window.categories = res;
+          getScreenshots(type,id).then( s =>{
+             
+             this.screenshots = s;
+             this.$emit('onResult', this.screenshots  );
+          })
+          .catch( e => console.log(e) );
+      }
 
-          this.categories = res.filter( c =>  c.slug !== "uncategorized" && c.count > 1 );
-
-         }).catch( (err) => console.log(res) );
-
-      },
-
-
-      getScreenshots(type = 'categories', id){
-
-        fetch(`${API_URL}/wp-json/wp/v2/media?${ type }=${ id }`)
-        .then( (response) => response.json() )
-        .then( (res) => {
-
-          this.screenshots = res;
-
-          this.$emit('onResult', this.screenshots  );
-
-         }).catch( (err) => console.log(res) );
-
-      },
-
-
-      getTags(){
-
-        fetch(`${API_URL}/wp-json/wp/v2/tags`)
-        .then( (response) => response.json() )
-        .then( (res) => {
-
-          this.tags = res;
-
-          window.tags = this.tags;
-
-         }).catch( (err) => console.log(res) );
-
-      },
-        
     },
-    computed: {
-	
-   
-       
-    },
-
     created (){ 
 
-      this.getCategories();
+      getCategories()
+      .then( c => {
+
+        window.categories = c; 
+        this.categories = c;
+
+      })
+      .catch( e => console.log('Error : ', e) );
       
-      this.getTags();
+      getTags()
+      .then( t =>{
+         
+        window.tags = t;
+        this.tags = t;
+
+      })
+      .catch( e => console.log('Error : ', e) );
 
     },
 }

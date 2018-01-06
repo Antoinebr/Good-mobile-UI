@@ -2764,7 +2764,7 @@ img {
 @media only screen and (max-width: 425px) {
   /* line 108, ../../sass/utils/_spacing.scss */
   .u-xs-ptn {
-    padding-top: none;
+    padding-top: 0px !important;
   }
 
   /* line 110, ../../sass/utils/_spacing.scss */
@@ -2776,16 +2776,26 @@ img {
   .u-xs-mtm {
     margin-top: 3.25rem !important;
   }
+
+  /* line 113, ../../sass/utils/_spacing.scss */
+  .u-xs-mtn {
+    margin-top: 0px !important;
+  }
+
+  /* line 115, ../../sass/utils/_spacing.scss */
+  .u-xs-mln {
+    margin-left: 0px !important;
+  }
 }
 /*
 * HR
 */
-/* line 119, ../../sass/utils/_spacing.scss */
+/* line 123, ../../sass/utils/_spacing.scss */
 hr {
   border-color: rgba(224, 224, 224, 0.19);
 }
 
-/* line 121, ../../sass/utils/_spacing.scss */
+/* line 125, ../../sass/utils/_spacing.scss */
 .hr--50 {
   width: 50%;
 }
@@ -2793,7 +2803,7 @@ hr {
 /*
 * Display
 */
-/* line 129, ../../sass/utils/_spacing.scss */
+/* line 133, ../../sass/utils/_spacing.scss */
 .u-db-ma {
   display: block;
   margin: auto;

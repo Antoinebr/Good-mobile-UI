@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <img :src="screenData.media_details.sizes.full.source_url" @click="setPopin()" class="img-responsive border-s u-mts" alt="">
+    <img :src="screenData.media_details.sizes.full.source_url" @click="setPopin()" v-if="!figureHidden"  class="cursor img-responsive border-s u-mts" alt="">
 
     <transition name="fade">
 
@@ -33,15 +33,25 @@
             <div class="row u-xs-pbs ">
               <div class="col-sm-12 col-xs-12 ">
 
-                <div v-for="(cat,index,id) in screenData.categories"  v-bind="index" :key="id" :class="{ 'u-mls ': index !== 0 }" class="col-sm-4 gallery-block" > 
-                    {{ categoriesIdtoName('categories',cat) }}
+        
+                <div v-if="categoriesData"  >
+                  <div v-for="(cat,index,id) in categories"  v-bind="index" :key="id" > 
+                    <div  :class="{ 'u-mls u-xs-mln': index !== 0 }" class="col-sm-4 gallery-block no-cursor" >  
+                      {{cat.name}}
+                    </div>
+                  </div>
                 </div>
+
               </div> <!-- col-sm-12 -->
 
-              <div class="col-sm-12 col-xs-12 u-mts">
+              <div class="col-sm-12 col-xs-12 u-mts u-xs-mtn">
 
-                <div v-for="(tag,index,id) in screenData.tags" :key="id" :class="{ 'u-mls' : index !== 0 }"  class="col-sm-4 gallery-block" > 
-                  {{ categoriesIdtoName('tags',tag) }}    
+                <div v-if="tagsData"  >
+                  <div v-for="(tag,index,id) in tags"  v-bind="index" :key="id" > 
+                    <div  :class="{ 'u-mls u-xs-mln': index !== 0 }" class="col-sm-4 gallery-block no-cursor" >  
+                      {{tag.name}}
+                    </div>
+                  </div>
                 </div>
 
               </div> <!-- col-sm-12 -->
@@ -60,14 +70,21 @@
 
 <script>
 
+import { getCategories, getTags } from '../../api/api.js';
+
+import find from 'lodash/find';
+
 export default {
-  props : ['screenData'],
+  props : ['screenData','options'],
   name: 'screenshot',
 
      data(){
         return{
           popin : false,
-          rowHeight : null
+          figureHidden : false,
+          closeRedirectHp : false,
+          categoriesData : false,
+          tagsData : false
         }
     },
     methods: {
@@ -75,39 +92,96 @@ export default {
       setPopin(){
 
         this.popin = true; 
+        
+        history.pushState({}, null, `#/screenshot/${this.screenData.slug}`);
 
       },
-
 
       closePopin(){
 
-        this.popin = !this.popin;
+        this.popin = false;
+  
+        if( this.closeRedirectHp ) this.$router.push({ path: '/' });
 
-      },
+        else  history.pushState({}, null, `#/`);
 
-      categoriesIdtoName(type = 'categories', id){
-
-        let cat =  window[type].filter( t => t.id === id);
+        //else history.back();
         
-        return ( cat[0].name !== "undefined") ? cat[0].name : false;
-
       },
 
       stripHtmlTags(OriginalString){
 
         return OriginalString.replace(/(<([^>]+)>)/ig,"");
 
+      },
+
+      myKey(event) {
+
+        if (event.code === "Escape") this.closePopin();
+
+        document.removeEventListener('click', this.myKey);
+
       }
         
     },
 
+    computed : {
+
+      categories(){
+        
+     
+        var categories = [];
+
+        this.screenData.categories.forEach( c => {
+
+          categories.push( find(this.categoriesData, ['id', c] ) ); 
+
+        });
+
+        return categories;
+
+      },
+
+
+      tags(){
+        
+     
+        var tags = [];
+
+        this.screenData.tags.forEach( t => {
+
+          tags.push( find(this.tagsData, ['id', t] ) ); 
+
+        });
+
+        return tags;
+
+      }
+
+
+    },
+
     mounted (){ 
 
-      window.addEventListener('keyup', (event) => {
+      window.addEventListener('keyup', this.myKey);  // listen esc key to close the popin 
 
-        if (event.code === "Escape") this.popin = false;
 
-      });      
+      if( typeof window.categories === "undefined" )  getCategories().then( c =>  this.categoriesData = c )
+      else this.categoriesData = window.categories;
+      
+
+      if( typeof window.tags === "undefined" ) getTags().then( t =>  this.tagsData = t );
+      else this.tagsData = window.tags;
+
+
+      if ( this.options !== false ){
+          
+        this.popin = this.options.directPopin; // trigger the popin directly 
+        this.figureHidden = this.options.figureHidden; // hide the cover image outside of the popin
+        this.closeRedirectHp = true; // Go back to home on close
+        
+      } 
+
 
     },
 }
@@ -142,15 +216,39 @@ export default {
     max-height: 100vh;
   }
 
+  .cursor:hover{
+    cursor: pointer;
+  }
+
+  .no-cursor:hover{
+    cursor: default;
+  }
+
 
   .popin .content .close{
     position: absolute;
     top: 5%;
     right: 5%;
     cursor: pointer;
+    border: 30px solid transparent;
   }
 
 
+  .border-s{
+    border: 2px solid #0000002e;
+    box-shadow: 0px 1px 10px 2px rgba(0, 0, 0, 0.05) ;
+  }
+
+  .boder-s:hover{
+    border: none;
+    
+  }
+
+@media only screen and (max-width: 425px){
+  	
+   .popin .content .close{  border-right: 0px; }
+}
+ 
   .fade-enter-active, .fade-leave-active {
     transition: opacity 0.25s ease-out;
   }
@@ -182,9 +280,7 @@ export default {
 
   @media only screen and (max-width: 425px){
     
-    .popin img{
-      max-height: 70vh;
-    }
+    .popin img{max-height: 70vh;}
      
   }
 
