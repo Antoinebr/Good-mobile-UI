@@ -12,16 +12,19 @@
             
             <button @click.prevent="search()" class="button u-mts u-sm-mtm u-db-ma button--medium ">
              
-              <span v-if="total === '' && total <= 0"> search screenshots</span>
+              <span v-if="total === '' && total <= 0 "> search screenshots   </span>
 
-              <span v-else-if="total === 0"> nothing found 😅 </span>
+              <span v-else-if="total === 0"> nothing found...</span>
 
               <span v-else > show the {{total}} screenshot<span v-if="total > 0">s</span> found </span>
               
             </button>
 
-            <p class="u-txtCenter u-mtn info-tip"  v-visible=" total > 0 " > hit enter to perform the query </p>
-            
+            <div v-visible="searching || total > 0 " class="u-txtCenter u-mtn info-tip" > 
+              <loader v-if="searching" /> 
+              <span v-if=" total > 0 && searching == false " >hit enter to perform the query</span>
+            </div>
+
           </div>
         </div>
      </div>
@@ -29,18 +32,20 @@
 </template>
 
 <script>
-import logo from './logo' 
+import logo from './logo'
+import loader from './loader' 
 import debounce from 'debounce';
 import trim from 'lodash/trim';
 
 export default {
-  components: {logo},
+  components: {logo,loader},
   name: 'search',
      data(){
         return{
             searchQuery : '',
             hits : null,
             total : '',
+            searching : null,
         }
     },
     methods: {
@@ -49,10 +54,13 @@ export default {
         
         let query = this.replaceSpaceToAnd(this.searchQuery);
 
+        this.searching = ( query !== "" ) ? true : false;
+
         fetch(`${API_URL}/wp-json/elastic/search/?query=${query}~`)
         .then( (response) => response.json() )
         .then( (res) => {
 
+          this.searching = false;
           this.total = res.length;
 
          }).catch( (err) => console.log('Rejected ',err) );
@@ -93,6 +101,7 @@ export default {
 
 .info-tip{
   font-size: 12px!important;
+  min-height: 30px;
 }
 
 </style>
