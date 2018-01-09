@@ -46,7 +46,7 @@
 
               <div class="col-sm-12 col-xs-12 u-mts u-xs-mtn">
 
-                <div v-if="tagsData"  >
+                <div v-if="tagsData && tags.length > 1" >
                   <div v-for="(tag,index,id) in tags"  v-bind="index" :key="id" > 
                     <div  :class="{ 'u-mls u-xs-mln': index !== 0 }" class="col-sm-4 gallery-block no-cursor" >  
                       {{tag.name}}

@@ -12,6 +12,7 @@
   "dependencies": {
     "debounce": "^1.1.0",
     "lodash": "^4.17.4",
+    "prerender-spa-plugin": "^2.1.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vue-scrollto": "^2.8.0",
