@@ -18,7 +18,7 @@ window.API_URL = require('./endpoints.js');
 Vue.use(VueMasonry);
 Vue.use(VueVisible);
 Vue.use(VueLazyload,{
-  preLoad : 1,
+  preLoad : 1.3,
   silent : false
 })
 

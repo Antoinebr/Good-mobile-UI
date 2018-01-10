@@ -1,8 +1,10 @@
 <template>
   <div>
 
-    <img v-lazy="screenData.media_details.sizes.full.source_url" @click="setPopin()" v-if="!figureHidden"  class="cursor img-responsive border-s u-mts" alt="">
-
+    <div class="front-figure u-mtm">
+      <img v-lazy="screenData.media_details.sizes.full.source_url" @click="setPopin()" v-if="!figureHidden"  class="cursor img-responsive border-s u-mts" alt="">
+    </div>
+    
     <transition name="fade">
 
       <article v-show="popin" class="container popin"> 
@@ -213,9 +215,15 @@ export default {
     font-size: 35px;
   }
 
+
   .popin .content,.figure{
     position: relative;
     max-height: 100vh;
+  }
+
+  .front-figure{
+    /* border: solid 1px red;*/
+    min-height: 180px;
   }
 
   .cursor:hover{
