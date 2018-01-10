@@ -7,7 +7,7 @@ import App from './App'
 import router from './router'
 import VueMasonry from 'vue-masonry-css'
 import VueVisible from 'vue-visible';
-
+import VueLazyload from 'vue-lazyload'
 
 
 // ENDPOINTS 
@@ -17,7 +17,14 @@ window.API_URL = require('./endpoints.js');
 // Vue use 
 Vue.use(VueMasonry);
 Vue.use(VueVisible);
+Vue.use(VueLazyload,{
+  preLoad : 1,
+  silent : false
+})
+
 Vue.config.productionTip = false
+
+
 
 
 // Vue proto

@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <img :src="screenData.media_details.sizes.full.source_url" @click="setPopin()" v-if="!figureHidden"  class="cursor img-responsive border-s u-mts" alt="">
+    <img v-lazy="screenData.media_details.sizes.full.source_url" @click="setPopin()" v-if="!figureHidden"  class="cursor img-responsive border-s u-mts" alt="">
 
     <transition name="fade">
 
@@ -10,7 +10,7 @@
 
           <div class="col-sm-6 col-md-6 col-xs-12 u-ptm figure">
 
-            <img :src="screenData.media_details.sizes.full.source_url" class="img-responsive border-s img-center" alt="">
+            <img v-lazy="screenData.media_details.sizes.full.source_url" class="img-responsive border-s img-center" alt="">
 
           </div> <!-- figure --> 
 
@@ -35,7 +35,7 @@
 
         
                 <div v-if="categoriesData"  >
-                  <div v-for="(cat,index,id) in categories"  v-bind="index" :key="id" > 
+                  <div v-for="(cat,index,id) in categories"  :key="id" > 
                     <div  :class="{ 'u-mls u-xs-mln': index !== 0 }" class="col-sm-4 gallery-block no-cursor" >  
                       {{cat.name}}
                     </div>
@@ -47,9 +47,11 @@
               <div class="col-sm-12 col-xs-12 u-mts u-xs-mtn">
 
                 <div v-if="tagsData && tags.length > 1" >
-                  <div v-for="(tag,index,id) in tags"  v-bind="index" :key="id" > 
-                    <div  :class="{ 'u-mls u-xs-mln': index !== 0 }" class="col-sm-4 gallery-block no-cursor" >  
-                      {{tag.name}}
+                  <div v-for="(tag,index,id) in tags" :key="id" > 
+                    <div v-if="tag !== undefined " >
+                      <div  :class="{ 'u-mls u-xs-mln': index !== 0 }" class="col-sm-4 gallery-block no-cursor" >  
+                        {{tag.name}}
+                      </div>
                     </div>
                   </div>
                 </div>

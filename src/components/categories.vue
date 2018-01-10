@@ -10,7 +10,9 @@
               <div v-for="categorie in categories" :key="categorie.id"> 
      
                 <a @click.prevent="getScreenshot('categories',categorie.id)" >  
-                  <div class="col-sm-2 gallery-block u-mls u-mrs" > {{categorie.name}}  </div>
+                  <div class="col-sm-2 u-pls u-prs">
+                    <div class="gallery-block"> {{categorie.name}} </div>
+                  </div>
                 </a>
 
               </div>
@@ -24,7 +26,10 @@
               <div v-for="tag in tags" :key="tag.id"> 
 
                 <a @click.prevent="getScreenshot('tags',tag.id)">  
-                  <div class="col-sm-2 gallery-block u-mls u-mrs u-mts" >  {{tag.name}}  </div>
+                  <div class="col-sm-2 u-pls u-prs u-mbs">
+                    <div class="gallery-block">  {{tag.name}}  </div>
+                  </div>
+          
                 </a>
 
               </div>
