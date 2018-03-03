@@ -4,15 +4,14 @@
 
 
 
-export const getCategories =  () =>{
+export const getCategories =  () => {
 
 
     return  fetch(`${API_URL}/wp-json/wp/v2/categories`)
     .then( (response) => response.json() )
     .then( (res) => {
 
-        return res;
-        //return  res.filter( c =>  c.slug !== "uncategorized" && c.count > 1  && c.slug !== "non-classe" );
+        return  res.filter( c =>  c.slug !== "uncategorized" && c.count > 0  && c.slug !== "non-classe" );
 
     }).catch( (err) => console.log(res) );
   
@@ -21,7 +20,7 @@ export const getCategories =  () =>{
 
 export const getTags = () => {
 
-    return fetch(`${API_URL}/wp-json/wp/v2/tags`)
+    return fetch(`${API_URL}/wp-json/wp/v2/tags?per_page=100`)
     .then( (response) => response.json() )
     .then( (res) => {
   

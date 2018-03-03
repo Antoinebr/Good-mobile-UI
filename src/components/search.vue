@@ -79,7 +79,7 @@ export default {
 
           this.hits = res;
 
-         }).catch( (err) => console.log(res) );
+         }).catch( (err) => console.log(err) );
 
       },
       replaceSpaceToAnd(query){

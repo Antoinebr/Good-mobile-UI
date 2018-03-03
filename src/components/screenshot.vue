@@ -46,18 +46,16 @@
 
               </div> <!-- col-sm-12 -->
 
-              <div class="col-sm-12 col-xs-12 u-mts u-xs-mtn">
-
-                <div v-if="tagsData && tags.length > 1" >
-                  <div v-for="(tag,index,id) in tags" :key="id" > 
-                    <div v-if="tag !== undefined " >
-                      <div  :class="{ 'u-mls u-xs-mln': index !== 0 }" class="col-sm-4 gallery-block no-cursor" >  
-                        {{tag.name}}
-                      </div>
+              <div class="col-sm-12 col-xs-12 u-xs-mtn">
+  
+                <div v-for="(tag,index,id) in tags" :key="id" > 
+                  <div v-if="tag !== undefined " >
+                    <div  :class="{ 'u-mls u-xs-mln': (index % 2) > 0  }" class=" u-mts col-sm-4 gallery-block no-cursor" >  
+                      {{tag.name}}
                     </div>
                   </div>
                 </div>
-
+                
               </div> <!-- col-sm-12 -->
             </div> <!-- row -->     
            
