@@ -25,6 +25,9 @@
               <span v-if=" total > 0 && searching == false " >hit enter to perform the query</span>
             </div>
 
+
+            <offline-content />
+
           </div>
         </div>
      </div>
@@ -35,10 +38,11 @@
 import logo from './logo'
 import loader from './loader' 
 import debounce from 'debounce';
+import offlineContent from './offline-content';
 import trim from 'lodash/trim';
 
 export default {
-  components: {logo,loader},
+  components: {logo,loader,offlineContent},
   name: 'search',
      data(){
         return{

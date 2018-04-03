@@ -1,8 +1,11 @@
 <template>
   <div>
-  
+    
+    <offline/>
+    
     <search @onResult="displayResults($event)"></search>
 
+    <offline-content />
    
     <categories @onResult="displayResults($event)" ></categories>
 
@@ -37,14 +40,15 @@
 </template>
 
 <script>
-
 import categories from './categories.vue';
 import search from './search.vue';
 import screenshot from './screenshot.vue';
+import offline from './offline.vue';
+import offlineContent from './offline-content';
 
 export default {
   name: 'Home',
-  components : {categories,search, screenshot},
+  components : {categories,search, screenshot, offline},
      data(){
         return{
             results: null,

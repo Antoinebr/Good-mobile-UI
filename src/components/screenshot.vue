@@ -2,7 +2,12 @@
   <div>
 
     <div class="front-figure u-mtm">
-      <img v-lazy="screenData.media_details.sizes.full.source_url" @click="setPopin()" v-if="!figureHidden"  class="cursor img-responsive border-s u-mts" alt="">
+
+      <img v-lazy="screenData.media_details.sizes.full.source_url" 
+            @click="setPopin()" 
+            v-if="!figureHidden"  
+            class="cursor img-responsive border-s u-mts" alt="">
+
     </div>
     
     <transition name="fade">
@@ -20,7 +25,7 @@
 
             <div class="close" @click="closePopin()" > X </div>
 
-            <h2>{{screenData.title.rendered}}</h2>
+            <h2> <span v-html="screenData.title.rendered"></span> </h2>
 
             <div v-if="screenData.caption.rendered !== '' ">
 
@@ -35,20 +40,20 @@
             <div class="row u-xs-pbs ">
               <div class="col-sm-12 col-xs-12 ">
 
-        
-                <div v-if="categoriesData"  >
-                  <div v-for="(cat,index,id) in categories"  :key="id" > 
-                    <div  :class="{ 'u-mls u-xs-mln': index !== 0 }" class="col-sm-4 gallery-block no-cursor" >  
-                      {{cat.name}}
+       
+                  <div v-if="categories" v-for="(cat,index,id) in categories"  :key="id" > 
+                    <div v-if="cat !== undefined " >
+                        <div  :class="{ 'u-mls u-xs-mln': (index % 2) > 0  }" class=" u-mts col-sm-4 gallery-block no-cursor" >  
+                          {{cat.name}}
+                        </div>
                     </div>
                   </div>
-                </div>
 
               </div> <!-- col-sm-12 -->
 
               <div class="col-sm-12 col-xs-12 u-xs-mtn">
   
-                <div v-for="(tag,index,id) in tags" :key="id" > 
+                <div  v-if="tags" v-for="(tag,index,id) in tags" :key="id" > 
                   <div v-if="tag !== undefined " >
                     <div  :class="{ 'u-mls u-xs-mln': (index % 2) > 0  }" class=" u-mts col-sm-4 gallery-block no-cursor" >  
                       {{tag.name}}
@@ -75,6 +80,8 @@
 import { getCategories, getTags } from '../../api/api.js';
 
 import find from 'lodash/find';
+
+import he from 'he';
 
 export default {
   props : ['screenData','options'],
@@ -112,9 +119,9 @@ export default {
       },
 
       stripHtmlTags(OriginalString){
-
-        return OriginalString.replace(/(<([^>]+)>)/ig,"");
-
+        
+        return he.decode( OriginalString.replace(/(<([^>]+)>)/ig,"") );
+  
       },
 
       myKey(event) {
@@ -251,6 +258,19 @@ export default {
     border: none;
     
   }
+
+  /* .front-figure{
+    position: relative
+  }
+
+  img[lazy="loading"]{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    background-image: url("https://thegoodmobileui.com/static/img/icons/icon-128x128.png");
+  } */
 
 @media only screen and (max-width: 425px){
   	

@@ -111,8 +111,31 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: 'service-worker.js',
       staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,
-      stripPrefix: 'dist/'
-    })
+      stripPrefix: 'dist/',
+      runtimeCaching: [
+        {
+          urlPattern:  new RegExp('^https://ui.antoinebrossault.com/wp-content/uploads/'),
+          handler: "networkFirst",
+          options: {
+            cache: {
+              maxEntries: 10,
+              name: 'image-cache'
+            }
+          }
+        },
+        {
+          urlPattern:  new RegExp('^https://ui.antoinebrossault.com/wp-json/wp/v2/(categories|tags)'),
+          handler: "cacheFirst",
+          options: {
+            cache: {
+              name: 'cat-tag-cache'
+            }
+          }
+        },
+      ],
+
+    }),
+
   ]
 })
 

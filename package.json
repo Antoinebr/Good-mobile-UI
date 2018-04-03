@@ -7,19 +7,22 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "dploy": "bash dploy",
+    "serve": "php -S localhost:1818 -t ./dist"
   },
   "dependencies": {
     "debounce": "^1.1.0",
-    "lodash": "^4.17.4",
-    "prerender-spa-plugin": "^2.1.0",
+    "he": "^1.1.1",
     "vue": "^2.5.2",
+    "vue-masonry-css": "^1.0.0",
     "vue-router": "^3.0.1",
     "vue-scrollto": "^2.8.0",
-    "vue-visible": "^1.0.2",
-    "vue-masonry-css": "^1.0.0"
+    "vue-visible": "^1.0.2"
   },
   "devDependencies": {
+    "lodash": "^4.17.4",
+    "prerender-spa-plugin": "^2.1.0",
     "autoprefixer": "^7.1.5",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
