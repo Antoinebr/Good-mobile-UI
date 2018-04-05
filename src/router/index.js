@@ -13,6 +13,11 @@ export default new Router({
       component: Home
     },
     {
+      path: '/search/:query',
+      name: 'Search',
+      component: Home
+    },
+    {
       path: '/screenshot/:slug',
       name: 'Archive',
       component: Archive

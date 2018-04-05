@@ -48,7 +48,7 @@ import offlineContent from './offline-content';
 
 export default {
   name: 'Home',
-  components : {categories,search, screenshot, offline},
+  components : {categories,search, screenshot, offline,offlineContent},
      data(){
         return{
             results: null,

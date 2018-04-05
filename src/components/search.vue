@@ -26,7 +26,7 @@
             </div>
 
 
-            <offline-content />
+            
 
           </div>
         </div>
@@ -38,11 +38,10 @@
 import logo from './logo'
 import loader from './loader' 
 import debounce from 'debounce';
-import offlineContent from './offline-content';
 import trim from 'lodash/trim';
 
 export default {
-  components: {logo,loader,offlineContent},
+  components: {logo,loader},
   name: 'search',
      data(){
         return{
@@ -73,8 +72,10 @@ export default {
 
       search(){
         
-        let query = this.replaceSpaceToAnd(this.searchQuery);
+        history.pushState({}, null, `#/search/${this.searchQuery}`);
 
+        let query = this.replaceSpaceToAnd(this.searchQuery);
+  
         fetch(`${API_URL}/wp-json/elastic/search/?query=${query}~`)
         .then( (response) => response.json() )
         .then( (res) => {
@@ -96,6 +97,18 @@ export default {
 
       }
   },
+
+  mounted(){
+
+    if( this.$route.params.query ){
+
+      this.searchQuery = this.$route.params.query;
+
+      this.search();
+      
+    }
+
+  }
 
 
 }
