@@ -207,8 +207,6 @@ export default {
     left: 0px;
     background-color: #FFFFFF;
     opacity: 0.99;
-
-    overflow: scroll;
   }
 
   .popin img{

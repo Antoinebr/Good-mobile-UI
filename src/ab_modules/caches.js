@@ -3,7 +3,7 @@
  * List the caches names
  * @returns {promise} cache names
  */
-const listCaches = function (){
+const listCaches = () => {
 
     return new Promise( (resolve, reject) => {  
        
@@ -26,7 +26,7 @@ const listCaches = function (){
  * @param {string} cacheName 
  * @returns {promise} keylist
  */
-const getCachedRequest = function (cacheName){
+const getCachedRequest = cacheName => {
 
     return new Promise( (resolve, reject) => {  
 
@@ -52,3 +52,4 @@ export default {
     listCaches : listCaches,
     getCachedRequest : getCachedRequest
 }
+
