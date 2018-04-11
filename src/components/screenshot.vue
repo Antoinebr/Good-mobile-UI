@@ -209,6 +209,12 @@ export default {
     opacity: 0.99;
   }
 
+  @media only screen and (max-width: 768px){
+    	.popin{
+        overflow: scroll;
+      }
+  }
+
   .popin img{
     max-height: 80vh;
   }
