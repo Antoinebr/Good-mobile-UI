@@ -17,7 +17,7 @@
 
           <div class="col-sm-6 col-md-6 col-xs-12 u-ptm figure">
 
-            <img v-lazy="screenData.media_details.sizes.full.source_url" class="img-responsive border-s img-center" alt="">
+            <img :src="screenData.media_details.sizes.full.source_url" class="img-responsive border-s img-center" alt="">
 
           </div> <!-- figure --> 
 
@@ -207,6 +207,7 @@ export default {
     left: 0px;
     background-color: #FFFFFF;
     opacity: 0.99;
+    z-index: 9;
   }
 
   @media only screen and (max-width: 768px){
@@ -263,18 +264,28 @@ export default {
     
   }
 
-  /* .front-figure{
-    position: relative
+  .front-figure{
+    position: relative;
   }
 
-  img[lazy="loading"]{
+  .front-figure img { opacity: 0 }
 
+  img[lazy]{  opacity: 0; transition: opacity 1.2s;}
+
+  img[lazy="loading"] { 
     position: absolute;
-    top: 50%;
-    left: 50%;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    background-color: #8080801c;
+    background-image: url(https://thegoodmobileui.com/static/img/icons/icon-128x128.png);
+    background-size: 60px 60px;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: grayscale(1) brightness(3);
+  }
 
-    background-image: url("https://thegoodmobileui.com/static/img/icons/icon-128x128.png");
-  } */
+  img[lazy="loaded"] { opacity: 1; }
 
 @media only screen and (max-width: 425px){
   	
