@@ -106,13 +106,18 @@
 @media only screen and (max-width: 425px){
 
   .u-xs-ptn{padding-top:0px !important; }
-
   .u-xs-pbs{padding-bottom: $spacer-s !important; }
 
   .u-xs-mtm{margin-top: $spacer-m !important;}
   .u-xs-mtn{margin-top:0px !important;  }
 
   .u-xs-mln{margin-left:0px !important;  }
+
+  .u-xs-pln{padding-left: 0px !important; }
+  .u-xs-prn{padding-right: 0px !important; }
+
+  .u-xs-pls{padding-left: 10px !important; }
+  .u-xs-prs{padding-right: 10px !important; }
 
 }
 

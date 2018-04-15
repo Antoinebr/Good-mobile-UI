@@ -2135,7 +2135,7 @@ img {
 .gallery-block {
   background-color: transparent;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
+  border-radius: 9px;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
   margin-bottom: 4px;
   padding: 0px;
@@ -2767,35 +2767,55 @@ img {
     padding-top: 0px !important;
   }
 
-  /* line 110, ../../sass/utils/_spacing.scss */
+  /* line 109, ../../sass/utils/_spacing.scss */
   .u-xs-pbs {
     padding-bottom: 1.625rem !important;
   }
 
-  /* line 112, ../../sass/utils/_spacing.scss */
+  /* line 111, ../../sass/utils/_spacing.scss */
   .u-xs-mtm {
     margin-top: 3.25rem !important;
   }
 
-  /* line 113, ../../sass/utils/_spacing.scss */
+  /* line 112, ../../sass/utils/_spacing.scss */
   .u-xs-mtn {
     margin-top: 0px !important;
   }
 
-  /* line 115, ../../sass/utils/_spacing.scss */
+  /* line 114, ../../sass/utils/_spacing.scss */
   .u-xs-mln {
     margin-left: 0px !important;
+  }
+
+  /* line 116, ../../sass/utils/_spacing.scss */
+  .u-xs-pln {
+    padding-left: 0px !important;
+  }
+
+  /* line 117, ../../sass/utils/_spacing.scss */
+  .u-xs-prn {
+    padding-right: 0px !important;
+  }
+
+  /* line 119, ../../sass/utils/_spacing.scss */
+  .u-xs-pls {
+    padding-left: 10px !important;
+  }
+
+  /* line 120, ../../sass/utils/_spacing.scss */
+  .u-xs-prs {
+    padding-right: 10px !important;
   }
 }
 /*
 * HR
 */
-/* line 123, ../../sass/utils/_spacing.scss */
+/* line 128, ../../sass/utils/_spacing.scss */
 hr {
   border-color: rgba(224, 224, 224, 0.19);
 }
 
-/* line 125, ../../sass/utils/_spacing.scss */
+/* line 130, ../../sass/utils/_spacing.scss */
 .hr--50 {
   width: 50%;
 }
@@ -2803,7 +2823,7 @@ hr {
 /*
 * Display
 */
-/* line 133, ../../sass/utils/_spacing.scss */
+/* line 138, ../../sass/utils/_spacing.scss */
 .u-db-ma {
   display: block;
   margin: auto;

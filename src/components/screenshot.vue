@@ -268,9 +268,27 @@ export default {
     position: relative;
   }
 
-  .front-figure img { opacity: 0 }
+  @media only screen and (min-width: 768px){
 
-  img[lazy]{  opacity: 0; transition: opacity 1.2s;}
+    .front-figure{
+      min-height: 380px;
+      min-width: 210px;
+    }
+
+  }
+
+   @media only screen and (max-width: 768px){
+
+    .front-figure{
+      min-height: 310px;
+      min-width: 178px;
+    }
+
+  }
+
+  .front-figure img { opacity: 0; transition: opacity 1.2s;}
+
+  img[lazy]{  opacity: 0; }
 
   img[lazy="loading"] { 
     position: absolute;
@@ -281,9 +299,12 @@ export default {
     background-image: url(https://thegoodmobileui.com/static/img/icons/icon-128x128.png);
     background-size: 60px 60px;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center center;
     filter: grayscale(1) brightness(3);
+    /* border: 0px;
+    box-shadow: 0px 0px 0px 0px; */
   }
+
 
   img[lazy="loaded"] { opacity: 1; }
 
