@@ -256,7 +256,8 @@ export default {
 
   .border-s{
     border: 2px solid #0000002e;
-    box-shadow: 0px 1px 10px 2px rgba(0, 0, 0, 0.05) ;
+    -webkit-box-shadow: 10px 10px 14px 1px rgba(00,00,00,0.2);
+    box-shadow: 10px 10px 14px 1px rgba(00,00,00,0.2);
   }
 
   .boder-s:hover{
