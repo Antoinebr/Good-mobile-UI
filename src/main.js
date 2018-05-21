@@ -8,7 +8,7 @@ import router from './router'
 import VueMasonry from 'vue-masonry-css'
 import VueVisible from 'vue-visible';
 import VueLazyload from 'vue-lazyload'
-
+import VueAnalytics from 'vue-analytics'
 
 // ENDPOINTS 
 window.API_URL = require('./endpoints.js');
@@ -21,6 +21,14 @@ Vue.use(VueLazyload,{
   preLoad : 1.3,
   silent : false
 })
+
+
+Vue.use( VueAnalytics, {
+  id: 'UA-119588030-1',
+  autoTracking: {
+    screenview: true
+  }
+});
 
 Vue.config.productionTip = false
 

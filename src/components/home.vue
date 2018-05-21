@@ -75,6 +75,12 @@ export default {
       }
 
     },
+
+    mounted(){
+
+      this.$ga.page(this.$router);
+      
+    }
 }
 </script>
 

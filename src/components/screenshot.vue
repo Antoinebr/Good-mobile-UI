@@ -172,6 +172,8 @@ export default {
 
     mounted (){ 
 
+      this.$ga.page(this.$router);
+
       window.addEventListener('keyup', this.myKey);  // listen esc key to close the popin 
 
 
@@ -256,8 +258,13 @@ export default {
 
   .border-s{
     border: 2px solid #0000002e;
-    -webkit-box-shadow: 10px 10px 14px 1px rgba(00,00,00,0.2);
-    box-shadow: 10px 10px 14px 1px rgba(00,00,00,0.2);
+    box-shadow: 0 1px 10px 2px rgba(0,0,0,.05);
+    -webkit-box-shadow:0 1px 10px 2px rgba(0,0,0,.05);
+  }
+
+  .popin .border-s{
+     -webkit-box-shadow: 10px 10px 14px 1px rgba(00,00,00,0.2)!important;
+    box-shadow: 10px 10px 14px 1px rgba(00,00,00,0.2)!important;
   }
 
   .boder-s:hover{

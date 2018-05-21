@@ -74,6 +74,9 @@ export default {
         
         history.pushState({}, null, `#/search/${this.searchQuery}`);
 
+        this.$ga.page({page: `#/search/?q=${this.searchQuery}`,title: 'Search' ,location: window.location.href})
+        
+
         let query = this.replaceSpaceToAnd(this.searchQuery);
   
         fetch(`${API_URL}/wp-json/elastic/search/?query=${query}~`)

@@ -31,9 +31,9 @@ export const getTags = () => {
 }
 
 
-export const getScreenshots = (type = 'categories', id) => {
+export const getScreenshots = (type = 'categories', content) => {
 
-    return fetch(`${API_URL}/wp-json/wp/v2/media?${ type }=${ id }&per_page=100`)
+    return fetch(`${API_URL}/wp-json/wp/v2/media?${ type }=${ content.id }&per_page=100`)
     .then( (response) => response.json() )
     .then( (res) => {
       
