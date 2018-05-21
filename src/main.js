@@ -26,7 +26,10 @@ Vue.use(VueLazyload,{
 Vue.use( VueAnalytics, {
   id: 'UA-119588030-1',
   autoTracking: {
-    screenview: true
+    exception: true
+  },
+  debug: {
+    sendHitTask: process.env.NODE_ENV === 'production'
   }
 });
 
