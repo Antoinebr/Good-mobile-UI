@@ -3,7 +3,7 @@
     
     <offline/>
     
-    <search @onResult="displayResults($event)"></search>
+    <search @onResult="displayResults($event)" @onSearchClick="addSpaceAndScroll()"></search>
 
     <offline-content />
    

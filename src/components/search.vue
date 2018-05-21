@@ -76,6 +76,7 @@ export default {
 
         this.$ga.page({page: `#/search/?q=${this.searchQuery}`,title: 'Search' ,location: window.location.href})
         
+        this.$emit('onSearchClick');
 
         let query = this.replaceSpaceToAnd(this.searchQuery);
   
