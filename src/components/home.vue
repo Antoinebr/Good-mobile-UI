@@ -7,7 +7,7 @@
 
     <offline-content />
    
-    <categories @onResult="displayResults($event)" ></categories>
+    <categories @onResult="displayResults($event)" @onCatClick="addSpaceAndScroll()"></categories>
 
 
     <div class="container u-mtm" id="screenshots">
@@ -15,6 +15,7 @@
 
         <div class="col-sm-12">
               
+            <heart v-if="loading"  />
 
             <masonry 
              :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
@@ -45,25 +46,36 @@ import search from './search.vue';
 import screenshot from './screenshot.vue';
 import offline from './offline.vue';
 import offlineContent from './offline-content';
+import heart from './heart.vue';
 
 export default {
   name: 'Home',
-  components : {categories,search, screenshot, offline,offlineContent},
+  components : {categories,search, screenshot, offline,offlineContent, heart},
      data(){
         return{
             results: null,
             screenshots: null,
+            loading : false,
         }
     },
     methods: {
 
-      displayResults(results){ 
+      addSpaceAndScroll(){
+        
+        document.querySelector('#screenshots').style.minHeight = "80vh";
 
         this.resetResults();
 
-        this.screenshots = results;
+        this.loading = true; 
 
         this.$scrollTo.scrollTo( '#screenshots' , 400, VueScollToOptions);
+
+      },
+
+      displayResults(results){ 
+
+        this.loading = false;
+        this.screenshots = results;
 
       },
 
@@ -79,7 +91,7 @@ export default {
     mounted(){
 
       this.$ga.page(this.$router);
-      
+
     }
 }
 </script>

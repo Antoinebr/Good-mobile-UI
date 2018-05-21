@@ -59,12 +59,15 @@ export default {
           
           this.$ga.event('navigation', 'click', content.name)
 
+          this.$emit('onCatClick');
+     
           getScreenshots(type,content).then( s =>{
-             
-             this.screenshots = s;
-             this.$emit('onResult', this.screenshots  );
+            
+            this.screenshots = s;
+            this.$emit('onResult', this.screenshots  );
           })
           .catch( e => console.log(e) );
+
       }
 
     },
