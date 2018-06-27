@@ -22,7 +22,7 @@
 
             <div v-visible="searching || total > 0 " class="u-txtCenter u-mtn info-tip" > 
               <loader v-if="searching" /> 
-              <span v-if=" total > 0 && searching == false " >hit enter to perform the query</span>
+              <!-- <span v-if=" total > 0 && searching == false " >hit enter to perform the query</span> -->
             </div>
 
 
