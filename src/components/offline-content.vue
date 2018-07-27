@@ -28,7 +28,7 @@
 
 <script>
 
-import caches from '../ab_modules/caches.js';
+import {getCachedRequest,listCaches} from '../ab_modules/caches.js';
 export default {
     name: 'offline-content',
 
@@ -51,14 +51,14 @@ export default {
     created(){
 
 
-        caches.listCaches()
+        listCaches()
             .then(c =>{
 
                 this.caches = c;
 
                 const imgCache = this.caches.filter(cache => cache.includes('image') );
 
-                return caches.getCachedRequest(imgCache);
+                return getCachedRequest(imgCache);
 
             })
             .then(requests =>{
