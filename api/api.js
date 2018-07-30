@@ -4,67 +4,67 @@
 
 
 
-export const getCategories =  () => {
+export const getCategories = async () => {
 
+    const data = await fetch(`${API_URL}/wp-json/wp/v2/categories`);
 
-    return  fetch(`${API_URL}/wp-json/wp/v2/categories`)
-    .then( (response) => response.json() )
-    .then( (res) => {
+    if( ! data.ok ) throw new Error(`Can't fetch the Categories `);
 
-        return  res.filter( c =>  c.slug !== "uncategorized" && c.count > 0  && c.slug !== "non-classe" );
+    const json = await data.json();
 
-    }).catch( (err) => console.log(res) );
-  
+    return json.filter( c =>  c.slug !== "uncategorized" && c.count > 0  && c.slug !== "non-classe" );
+
 }
 
 
-export const getTags = () => {
+export const getTags = async () => {
 
-    return fetch(`${API_URL}/wp-json/wp/v2/tags?per_page=100`)
-    .then( (response) => response.json() )
-    .then( (res) => {
-  
-        return res; 
-    
-    }).catch( (err) => console.log(res) );
+    const data = await fetch(`${API_URL}/wp-json/wp/v2/tags?per_page=100`);
+
+    if( ! data.ok ) throw new Error(`Can't fetch the Tags `);
+
+    const json = data.json();
+
+    return json;
      
 }
 
 
-export const getScreenshots = (type = 'categories', content) => {
+export const getScreenshots = async (type = 'categories', content) => {
 
-    return fetch(`${API_URL}/wp-json/wp/v2/media?${ type }=${ content.id }&per_page=100`)
-    .then( (response) => response.json() )
-    .then( (res) => {
-      
-        return res; 
+     const data = await fetch(`${API_URL}/wp-json/wp/v2/media?${ type }=${ content.id }&per_page=100`);
 
-     }).catch( (err) => console.log(res) );
+     if( ! data.ok ) throw new Error(`Can't fetch the screenshot of type : ${type} and content.id : ${ content.id } `);
 
-}
+     const json = data.json();
 
-
-export const getScreenshot = (id) => {
-
-    return fetch(`${API_URL}/wp-json/wp/v2/media?include=${ id }`)
-    .then( (response) => response.json() )
-    .then( (res) => {
-      
-        return res; 
-
-     }).catch( (err) => console.log(res) );
+     return json;
 
 }
 
 
-export const getScreenshotBySlug = (slug) => {
+export const getScreenshot = async id => {
 
-    return fetch(`${API_URL}/wp-json/wp/v2/media?slug=${ slug }`)
-    .then( (response) => response.json() )
-    .then( (res) => {
-      
-        return res; 
+    const data = await fetch(`${API_URL}/wp-json/wp/v2/media?include=${ id }`)
 
-     }).catch( (err) => console.log(res) );
+    if( ! data.ok ) throw new Error(`Can't fetch the screenshot with id : ${id} `);
+
+    const json = data.json();
+
+    return json;
+
+}
+
+
+export const getScreenshotBySlug = async slug => {
+
+ 
+     const data = await fetch(`${API_URL}/wp-json/wp/v2/media?slug=${ slug }`);
+
+     if( ! data.ok ) throw new Error(`Can't fetch the screenshot with slug : ${slug} `);
+ 
+     const json = data.json();
+ 
+     return json;
 
 }
