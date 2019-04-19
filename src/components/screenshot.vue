@@ -31,8 +31,8 @@
 
               <hr class="u-mts u-mbs"> 
 
-              <p>{{stripHtmlTags(screenData.caption.rendered)}}</p>
-
+              <editable label="Full name" :id="screenData.id" v-model="screenData.caption.rendered"></editable>
+ 
             </div> 
             
             <hr class="u-mts u-mbs"> 
@@ -79,6 +79,8 @@
 
 import { getCategories, getTags } from '../../api/api.js';
 
+import editable from './editable';
+
 import find from 'lodash/find';
 
 import he from 'he';
@@ -86,7 +88,9 @@ import he from 'he';
 export default {
   props : ['screenData','options'],
   name: 'screenshot',
-
+  components: {
+    editable
+  },
      data(){
         return{
           popin : false,
@@ -96,8 +100,7 @@ export default {
           tagsData : false
         }
     },
-    methods: {
-
+    methods: {  
       setPopin(){
 
         this.popin = true; 
