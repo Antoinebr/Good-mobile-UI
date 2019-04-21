@@ -1,8 +1,7 @@
+.header {
 
-.header{
-
-    h1{ 
-        color: #2980b9; 
+    h1 {
+        color: #2980b9;
         font-size: 42px;
     }
 
@@ -11,7 +10,7 @@
         font-weight: 200;
     }
 
-    input{
+    input {
         border-radius: 4px !important;
         border: 1px solid #DBDBDB !important;
         width: 75%;
@@ -19,17 +18,22 @@
         padding-left: 10px;
     }
 
-    @media only screen and (max-width: 425px){
-        	
-       p{ font-size: 15px; }
+    @media only screen and (max-width: 425px) {
 
-       input{ width: 100%; font-size: 13px; }
+        p {
+            font-size: 15px;
+        }
+
+        input {
+            width: 100%;
+            font-size: 13px;
+        }
 
     }
 
 }
 
-h2{
+h2 {
     margin: 0 0 1.625rem 0;
     font-family: Helvetica, sans-serif;
     line-height: 1.25em;
@@ -38,3 +42,44 @@ h2{
     text-rendering: optimizeLegibility;
     font-size: 22px;
 }
+
+h1 {
+    font-family: Helvetica;
+    font-size: 40px;
+    color: #5A5A5A!important;
+    font-weight: 200;
+}
+
+
+/* FORM */ 
+
+textarea {
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+}
+
+
+.form-group{
+    width: 60%;
+    display: block;
+    margin:auto;
+}
+
+input,textarea{
+    border-radius: 4px !important;
+    border: 1px solid #DBDBDB !important;
+    width: 100%;
+    padding-left: 10px;
+}
+
+input {
+    height: 60px;
+}
+
+textarea{
+    height:100px;
+}
+

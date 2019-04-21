@@ -58,7 +58,6 @@ export const getScreenshot = async id => {
 
 export const getScreenshotBySlug = async slug => {
 
-
     const data = await fetch(`${API_URL}/wp-json/wp/v2/media?slug=${ slug }`);
 
     if (!data.ok) throw new Error(`Can't fetch the screenshot with slug : ${slug} `);
@@ -67,6 +66,28 @@ export const getScreenshotBySlug = async slug => {
 
     return json;
 
+}
+
+
+export const registerUser = async userInfos => {
+
+    const { username, email, password } = userInfos;
+
+    const res = await fetch(`${API_URL}/wp-json/create/user/`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username,
+            email,
+            password
+        })
+    });
+
+    const json = await res.json();
+
+    return json;
 }
 
 
@@ -107,11 +128,12 @@ export const login = async credentials => {
 
 export const updateScreenshotInfos = async infos => {
 
-    const { id, caption } = infos;
+    const { id, caption,title } = infos;
 
     if (typeof caption === "undefined") {
         throw new Error('Caption can\'t be empty');
     }
+
     const res = await fetch(`${API_URL}/wp-json/wp/v2/media/${id}`, {
         method: 'post',
         headers: {
@@ -119,7 +141,8 @@ export const updateScreenshotInfos = async infos => {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         },
         body: JSON.stringify({
-            caption
+            caption,
+            title
         })
     });
 

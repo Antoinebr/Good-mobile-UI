@@ -59,6 +59,9 @@ window.VueScollToOptions = {
   y: true
 }
 
+// ServerBus is usefulle to comunicates events betxeen components
+export const serverBus = new Vue();
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

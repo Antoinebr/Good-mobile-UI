@@ -2,14 +2,23 @@
     <section class="bg-img u-mts">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-sm-push-3 header u-mtl">
+                <div class="col-sm-6 col-sm-push-3 u-mtl">
 
-                    <logo />
+                    <h1 class="u-txtCenter">Welcome Back</h1>
 
-                    <p class="u-txtCenter">Welcome back my friend ! Please login. </p>
+                    <p class="u-txtCenter">Enter your email to log into your account</p>
 
-                    <input v-model="userLogin" class=" u-shadowM img-center u-mtm" placeholder="Your login">
-                    <input v-model="userPassword" class="u-shadowM img-center u-mtm" placeholder="Your Passwod">
+                    <div class="input-group">
+                        <div class="form-group u-mts">
+                            <label for="password">Username :</label>
+                            <input v-model="userLogin" placeholder="Your username">
+                        </div>
+
+                        <div class="form-group u-mts">
+                            <label for="password">Password :</label>
+                            <input v-model="userPassword" type="password" name="password" placeholder="Your Password">
+                        </div>
+                    </div>
 
                     <button @click.prevent="performLogin()" class="button u-mts u-sm-mtm u-db-ma button--medium ">Login</button>
 
@@ -21,6 +30,7 @@
 </template>
 
 <script>
+    import { serverBus } from '../main.js';
     import { login } from '../../api/api.js';
     import logo from './logo'
 
@@ -44,9 +54,11 @@
                     password: this.userPassword
                 }).catch(console.log);
 
-                localStorage.setItem('jwt',jwt);
+                localStorage.setItem('jwt', jwt);
 
-                if(jwt){
+                serverBus.$emit('logged', 'User logged');
+
+                if (jwt) {
                     alert('You are logged in !');
                 }
 
@@ -56,7 +68,5 @@
 </script>
 
 <style scoped>
-    textarea {
-        width: 100%;
-    }
+   
 </style>
