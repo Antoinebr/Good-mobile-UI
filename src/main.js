@@ -37,6 +37,26 @@ Vue.config.productionTip = false
 
 
 
+// vuetify
+
+import Vuetify, {
+  VApp, // required
+  VSnackbar
+} from 'vuetify/lib'
+//import { Ripple } from 'vuetify/lib/directives'
+
+Vue.use(Vuetify, {
+  components: {
+    VApp,
+    VSnackbar
+  },
+  directives: {
+    //Ripple
+  }
+})
+
+//import 'vuetify/src/stylus/app.styl'
+
 
 // Vue proto
 

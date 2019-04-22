@@ -1,5 +1,6 @@
 # mobile-ui
 
+should move to vue-cli ( to get Webpack 4 and tree shaking )
 > An app to showcase good mobile site UI. This repo contains the front-end of the app. The backend is powered thanks to the WordPress REST API + Elastic search ( docker stack )
 
 ## Build Setup

@@ -85,6 +85,13 @@ export const registerUser = async userInfos => {
         })
     });
 
+    if(!res.ok){
+
+        const {message} = await res.json();
+
+        throw new Error(message);
+    }
+
     const json = await res.json();
 
     return json;
@@ -113,6 +120,11 @@ export const login = async credentials => {
             password
         })
     });
+
+    if(!res.ok){
+        console.log(await res.json());
+        throw new Error(`${await res.json()}`);
+    }
 
     const json = await res.json();
 

@@ -2,7 +2,7 @@
     <section class="bg-img u-mts">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-sm-push-3 u-mtl">
+                <div class="col-sm-6 col-sm-push-3 u-mtm">
 
                     <h1 class="u-txtCenter">Welcome Back</h1>
 
@@ -20,11 +20,12 @@
                         </div>
                     </div>
 
-                    <button @click.prevent="performLogin()" class="button u-mts u-sm-mtm u-db-ma button--medium ">Login</button>
+                    <button @click.prevent="performLogin()" class="button u-mts u-sm-mtm u-db-ma button--medium">Login</button>
 
                 </div>
             </div>
         </div>
+        <v-snackbar v-model="snackbar">{{ snackbarText }} </v-snackbar>
     </section>
 
 </template>
@@ -42,39 +43,50 @@
         data() {
             return {
                 userLogin: "",
-                userPassword: ""
+                userPassword: "",
+                snackbar: false,
+                snackbarText: ''
             }
         },
         methods: {
 
             async performLogin() {
+                
+                if(this.userLogin === ""){
+                    this.showSnackBar(`The username can't be empty`);
+                    return;
+                }
+
+                if(this.userPassword === ""){
+                    this.showSnackBar(`The password can't be empty`);
+                    return;
+                }
 
                 login({
-                    username: this.userLogin,
-                    password: this.userPassword
-                })
-                .then( jwt => {
+                        username: this.userLogin,
+                        password: this.userPassword
+                    })
+                    .then(jwt => {
 
-                    localStorage.setItem('jwt', jwt);
+                        localStorage.setItem('jwt', jwt);
 
-                    serverBus.$emit('logged', 'User logged');
+                        serverBus.$emit('logged', 'User logged');
 
-                    if (jwt) {
-                        alert('You are logged in !');
-                    }
+                        if (jwt) {
+                            this.showSnackBar('You are now logged in');
+                        }
 
-                }).catch(error => {
-                        alert('Login Error!');
+                    }).catch(error => {
+                        this.showSnackBar('Error : The username or/and password are not correct');
                         console.log(error);
-                });
+                    });
 
-            
+            },
 
+            showSnackBar(text){
+                this.snackbarText = text;
+                this.snackbar = true;
             }
         }
     }
 </script>
-
-<style scoped>
-   
-</style>

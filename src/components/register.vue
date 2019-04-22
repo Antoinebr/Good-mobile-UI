@@ -2,7 +2,7 @@
     <section class="bg-img u-mts">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-sm-push-3 u-mtl">
+                <div class="col-sm-6 col-sm-push-3 u-mtm">
 
                     <h1 class="u-txtCenter">Welcome</h1>
 
@@ -37,8 +37,9 @@
                 </div>
             </div>
         </div>
-    </section>
 
+        <v-snackbar v-model="snackbar">{{ snackbarText }} </v-snackbar>
+    </section>
 </template>
 
 <script>
@@ -56,7 +57,9 @@
                 userLogin: "",
                 userEmail: "",
                 userPassword: "",
-                userPasswordConfirm: ""
+                userPasswordConfirm: "",
+                snackbar: false,
+                snackbarText:""
             }
         },
         methods: {
@@ -64,7 +67,7 @@
             async register() {
 
                 if (this.userPassword !== this.userPasswordConfirm) {
-                    alert('The password are differents');
+                    this.showSnackBar('The password are differents');
                     return false;
                 }
 
@@ -72,21 +75,38 @@
                     username: this.userLogin,
                     password: this.userPassword,
                     email: this.userEmail
-                }).catch(console.log);
+                }).catch( e => {
+                    console.log(e);
+                    this.showSnackBar(`The registration failed : ${e}`);
+                });
 
-                const JWT = await login({
+                await login({
                     username: this.userLogin,
                     password: this.userPassword
-                }).catch(console.log);
+                })
+                then( JWT =>{
+
+                    serverBus.$emit('logged', 'User logged');
+
+                    localStorage.setItem('jwt', JWT);
+
+                    console.log(user);
+                    this.showSnackBar('You are now registered and logged in');
+
+                }).catch( e => {
+
+                    console.log(e);
+                    this.showSnackBar('Login failed');
+                });
 
 
-                serverBus.$emit('logged', 'User logged');
-
-                localStorage.setItem('jwt', JWT);
 
 
-                console.log(user);
+            },
 
+            showSnackBar(text){
+                this.snackbarText = text;
+                this.snackbar = true;
             }
         }
     }

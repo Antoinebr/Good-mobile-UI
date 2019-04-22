@@ -154,4 +154,8 @@
         text-decoration: none;
         color: inherit;
     }
+
+    .container{
+        padding: inherit!important;
+    }
 </style>
