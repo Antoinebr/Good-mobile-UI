@@ -49,18 +49,26 @@
 
             async performLogin() {
 
-                const jwt = await login({
+                login({
                     username: this.userLogin,
                     password: this.userPassword
-                }).catch(console.log);
+                })
+                .then( jwt => {
 
-                localStorage.setItem('jwt', jwt);
+                    localStorage.setItem('jwt', jwt);
 
-                serverBus.$emit('logged', 'User logged');
+                    serverBus.$emit('logged', 'User logged');
 
-                if (jwt) {
-                    alert('You are logged in !');
-                }
+                    if (jwt) {
+                        alert('You are logged in !');
+                    }
+
+                }).catch(error => {
+                        alert('Login Error!');
+                        console.log(error);
+                });
+
+            
 
             }
         }
