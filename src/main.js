@@ -1,5 +1,16 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+// vue-cli 
+// 
+// import Vue from 'vue'
+// import App from './App.vue'
+// import router from './router'
+// import './registerServiceWorker'
+
+// Vue.config.productionTip = false
+
+// new Vue({
+//   router,
+//   render: h => h(App)
+// }).$mount('#app')
 
 
 import Vue from 'vue'
@@ -9,7 +20,7 @@ import VueMasonry from 'vue-masonry-css'
 import VueVisible from 'vue-visible';
 import VueLazyload from 'vue-lazyload'
 import VueAnalytics from 'vue-analytics'
-
+import './registerServiceWorker'
 // ENDPOINTS 
 window.API_URL = require('./endpoints.js');
 
@@ -83,11 +94,14 @@ window.VueScollToOptions = {
 export const serverBus = new Vue();
 
 /* eslint-disable no-new */
+// new Vue({
+//   el: '#app',
+//   router,
+//   template: '<App/>',
+//   components: { App }
+// })
 new Vue({
-  el: '#app',
   router,
-  template: '<App/>',
-  components: { App }
-})
-
+  render: h => h(App)
+}).$mount('#app')
 
