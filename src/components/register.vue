@@ -59,7 +59,7 @@
                 userPassword: "",
                 userPasswordConfirm: "",
                 snackbar: false,
-                snackbarText:""
+                snackbarText: ""
             }
         },
         methods: {
@@ -71,40 +71,38 @@
                     return false;
                 }
 
-                const user = await registerUser({
+                registerUser({
                     username: this.userLogin,
                     password: this.userPassword,
                     email: this.userEmail
-                }).catch( e => {
-                    console.log(e);
-                    this.showSnackBar(`The registration failed : ${e}`);
-                });
+                }).then(() => {
 
-                await login({
-                    username: this.userLogin,
-                    password: this.userPassword
-                })
-                then( JWT =>{
+                    return login({
+                        username: this.userLogin,
+                        password: this.userPassword
+                    })
+
+                }).then(async JWT => {
 
                     serverBus.$emit('logged', 'User logged');
 
                     localStorage.setItem('jwt', JWT);
-
-                    console.log(user);
+                    
                     this.showSnackBar('You are now registered and logged in');
 
-                }).catch( e => {
+                    await new Promise((resolve, reject) => setTimeout(() => resolve(), 800));
 
+                    this.$router.push({ name: 'Account' });
+
+                }).catch(e => {
                     console.log(e);
-                    this.showSnackBar('Login failed');
+                    this.showSnackBar(`The registration failed : ${e}`);
                 });
-
-
 
 
             },
 
-            showSnackBar(text){
+            showSnackBar(text) {
                 this.snackbarText = text;
                 this.snackbar = true;
             }

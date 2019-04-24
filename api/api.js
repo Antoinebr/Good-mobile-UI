@@ -1,12 +1,12 @@
 /**
  * Get content from wordpress via REST Api
  */
-
+import he from 'he';
 
 
 export const getCategories = async () => {
 
-    const data = await fetch(`${API_URL}/wp-json/wp/v2/categories`);
+    const data = await fetch(`${process.env.VUE_APP_API_URL}/wp-json/wp/v2/categories`);
 
     if (!data.ok) throw new Error(`Can't fetch the Categories `);
 
@@ -19,7 +19,7 @@ export const getCategories = async () => {
 
 export const getTags = async () => {
 
-    const data = await fetch(`${API_URL}/wp-json/wp/v2/tags?per_page=100`);
+    const data = await fetch(`${process.env.VUE_APP_API_URL}/wp-json/wp/v2/tags?per_page=100`);
 
     if (!data.ok) throw new Error(`Can't fetch the Tags `);
 
@@ -32,7 +32,7 @@ export const getTags = async () => {
 
 export const getScreenshots = async (type = 'categories', content) => {
 
-    const data = await fetch(`${API_URL}/wp-json/wp/v2/media?${ type }=${ content.id }&per_page=100`);
+    const data = await fetch(`${process.env.VUE_APP_API_URL}/wp-json/wp/v2/media?${ type }=${ content.id }&per_page=100`);
 
     if (!data.ok) throw new Error(`Can't fetch the screenshot of type : ${type} and content.id : ${ content.id } `);
 
@@ -45,7 +45,7 @@ export const getScreenshots = async (type = 'categories', content) => {
 
 export const getScreenshot = async id => {
 
-    const data = await fetch(`${API_URL}/wp-json/wp/v2/media?include=${ id }`)
+    const data = await fetch(`${process.env.VUE_APP_API_URL}/wp-json/wp/v2/media?include=${ id }`)
 
     if (!data.ok) throw new Error(`Can't fetch the screenshot with id : ${id} `);
 
@@ -58,7 +58,7 @@ export const getScreenshot = async id => {
 
 export const getScreenshotBySlug = async slug => {
 
-    const data = await fetch(`${API_URL}/wp-json/wp/v2/media?slug=${ slug }`);
+    const data = await fetch(`${process.env.VUE_APP_API_URL}/wp-json/wp/v2/media?slug=${ slug }`);
 
     if (!data.ok) throw new Error(`Can't fetch the screenshot with slug : ${slug} `);
 
@@ -73,7 +73,7 @@ export const registerUser = async userInfos => {
 
     const { username, email, password } = userInfos;
 
-    const res = await fetch(`${API_URL}/wp-json/create/user/`, {
+    const res = await fetch(`${process.env.VUE_APP_API_URL}/wp-json/create/user/`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
@@ -85,9 +85,9 @@ export const registerUser = async userInfos => {
         })
     });
 
-    if(!res.ok){
+    if (!res.ok) {
 
-        const {message} = await res.json();
+        const { message } = await res.json();
 
         throw new Error(message);
     }
@@ -110,7 +110,7 @@ export const login = async credentials => {
         throw new Error('password can\'t be empty');
     }
 
-    const res = await fetch(`${API_URL}/wp-json/jwt-auth/v1/token`, {
+    const res = await fetch(`${process.env.VUE_APP_API_URL}/wp-json/jwt-auth/v1/token`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
@@ -121,32 +121,34 @@ export const login = async credentials => {
         })
     });
 
-    if(!res.ok){
+    if (!res.ok) {
         console.log(await res.json());
         throw new Error(`${await res.json()}`);
     }
 
     const json = await res.json();
 
-    const {token} = json;
+    console.log(json);
+    const { token } = json;
 
-    if( typeof token === "undefined"){
+    if (typeof token === "undefined") {
         throw new Error(`We didn't get a valid JWT we got : ${JSON.stringify(json, null, 2)}`);
     }
-    
+
     return token;
 
 }
 
+
 export const updateScreenshotInfos = async infos => {
 
-    const { id, caption,title } = infos;
+    const { id, caption, title } = infos;
 
     if (typeof caption === "undefined") {
         throw new Error('Caption can\'t be empty');
     }
 
-    const res = await fetch(`${API_URL}/wp-json/wp/v2/media/${id}`, {
+    const res = await fetch(`${process.env.VUE_APP_API_URL}/wp-json/wp/v2/media/${id}`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
@@ -159,6 +161,57 @@ export const updateScreenshotInfos = async infos => {
     });
 
     const json = await res.json();
+
+    return json;
+
+}
+
+
+
+export const getCurrentUserInfo = async () => {
+
+    const res = await fetch(`${process.env.VUE_APP_API_URL}/wp-json/wp/v2/users/me`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+    });
+
+    if (!res.ok) {
+        console.log(await res.json());
+        throw new Error(`${await res.json()}`);
+    }
+
+    const json = await res.json();
+
+    return json; 
+}
+
+
+export const getUserScreenshot = async () => {
+
+
+    const {id} = await getCurrentUserInfo();
+
+    const res = await fetch(`${process.env.VUE_APP_API_URL}/wp-json/wp/v2/media?author=${id}`);
+
+    const json = await res.json();
+
+    json.map(file => {
+
+        if (!file.title.raw) {
+            file.title.raw = he.decode(file.title.rendered.replace(/(<([^>]+)>)/ig, ""));
+        }
+
+        if (!file.caption.raw) {
+            file.caption.raw = he.decode(file.caption.rendered.replace(/(<([^>]+)>)/ig, ""));
+        }
+
+        file.isEditing = false;
+
+        return file
+
+    });
 
     return json;
 

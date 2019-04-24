@@ -31,6 +31,7 @@ import Login from '@/components/login'
 import Upload from '@/components/upload'
 import Styleguide from '@/components/styleguide'
 import Register from '@/components/register';
+import Account from '@/views/Account';
 
 Vue.use(Router)
 
@@ -65,6 +66,11 @@ export default new Router({
       path:'/styleguide',
       name:'Styleguide',
       component: Styleguide
+    },
+    {
+      path:'/account',
+      name:'Account',
+      component: Account
     },
     {
       path:'/register',

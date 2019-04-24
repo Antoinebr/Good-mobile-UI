@@ -34,7 +34,6 @@
     import { serverBus } from '../main.js';
     import { login } from '../../api/api.js';
     import logo from './logo'
-
     export default {
         name: 'Login',
         components: {
@@ -51,14 +50,22 @@
         methods: {
 
             async performLogin() {
-                
-                if(this.userLogin === ""){
-                    this.showSnackBar(`The username can't be empty`);
+
+
+                if (this.userLogin === "") {
+
+                    serverBus.$emit('alert', {
+                        message: 'Error the username can\'t be empty'
+                    });
                     return;
                 }
 
-                if(this.userPassword === ""){
-                    this.showSnackBar(`The password can't be empty`);
+                if (this.userPassword === "") {
+
+                    serverBus.$emit('alert', {
+                        message: 'Error the password can\'t be empty'
+                    });
+
                     return;
                 }
 
@@ -66,24 +73,34 @@
                         username: this.userLogin,
                         password: this.userPassword
                     })
-                    .then(jwt => {
+                    .then(async jwt => {
 
                         localStorage.setItem('jwt', jwt);
 
                         serverBus.$emit('logged', 'User logged');
 
                         if (jwt) {
-                            this.showSnackBar('You are now logged in');
+                            serverBus.$emit('alert', {
+                                message: "You are now logged in"
+                            });
                         }
 
+                        this.$router.push({ name: 'Account' });
+
+                        return;
+
                     }).catch(error => {
-                        this.showSnackBar('Error : The username or/and password are not correct');
+
+                        serverBus.$emit('alert', {
+                            message: 'Error : The username or/and password are not correct'
+                        });
                         console.log(error);
+
                     });
 
             },
 
-            showSnackBar(text){
+            showSnackBar(text) {
                 this.snackbarText = text;
                 this.snackbar = true;
             }

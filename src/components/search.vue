@@ -59,7 +59,7 @@ export default {
 
         this.searching = ( query !== "" ) ? true : false;
 
-        fetch(`${API_URL}/wp-json/elastic/search/?query=${query}~`)
+        fetch(`${process.env.VUE_APP_API_URL}/wp-json/elastic/search/?query=${query}~`)
         .then( (response) => response.json() )
         .then( (res) => {
 
