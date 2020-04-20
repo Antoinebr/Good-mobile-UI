@@ -12,7 +12,7 @@
             
             <button @click.prevent="search()" class="button u-mts u-sm-mtm u-db-ma button--medium ">
              
-              <span v-if="total === '' && total <= 0 "> search screenshots   </span>
+              <span v-if="total === '' && total <= 0 "> search screenshots </span>
 
               <span v-else-if="total === 0"> nothing found...</span>
 
@@ -80,7 +80,7 @@ export default {
 
         let query = this.replaceSpaceToAnd(this.searchQuery);
   
-        fetch(`${API_URL}/wp-json/elastic/search/?query=${query}~`)
+        fetch(`${process.env.VUE_APP_API_URL}/wp-json/elastic/search/?query=${query}~`)
         .then( (response) => response.json() )
         .then( (res) => {
 

@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:e2e": "vue-cli-service test:e2e",
-    "build:serve":"npm run build && cd dist && pythonServe 9843"
+    "build:serve": "npm run build && cd dist && pythonServe 9843",
+    "deploy": "bash deploy.sh"
   },
   "dependencies": {
     "core-js": "^2.6.5",

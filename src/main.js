@@ -65,7 +65,7 @@ Vue.use(Vuetify, {
     }
 })
 
-//import 'vuetify/src/stylus/app.styl'
+import 'vuetify/src/stylus/app.styl'
 
 
 // Vue proto
